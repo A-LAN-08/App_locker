@@ -5,8 +5,6 @@ A lightweight application locker that prevents specific programs from running wi
 > [!WARNING]
 > **Important Disclaimer:** This tool only blocks `.exe` files from starting. It **does not** encrypt your files or lock folders. If you need to protect sensitive data from being read, please use a dedicated encryption tool like BitLocker.
 
----
-
 ## How to Install
 
 1. **Clone the Repository:** 
@@ -24,15 +22,11 @@ A lightweight application locker that prevents specific programs from running wi
 
 4. **Deploy:** Run `run.py` via your preferred method. It will prompt for admin access when creating a schedule which is needed for the program to automatically run on Windows startup.
 
----
-
 ## Tips
 
 - Once the deployment finishes successfully, I highly suggest deleting the source files from your desktop and recycling bin. Although the `settings.ini` file is reset after running, leaving these may hint to others that this app was run.
 - If you want to run the deployment again for the same output name, ensure the previous task is completely killed via task manager otherwise the code will fail to run properly.
 - If you change the name of the deployment and run it again, it will NOT delete the previous instance. To remove this you need to manually navigate to `C:\ProgramData\` and delete the folder name of the previous deployment.
-
----
 
 ## Troubleshooting
 Before sending any issue requests check the following:
@@ -40,12 +34,8 @@ Before sending any issue requests check the following:
 - **Admin rights:** The task registration will fail if you deny the Admin prompt during deployment. This does not stop the exe from being prodceed, but it will not run automatically on startup.
 - **No ghost processes:** Ensure no previous versions of the script are already running, as it can cause permission errors to over-write the old files.
 
----
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
----
 
 *Use this tool responsibly. The author is not responsible for any lost access to your applications or accidental lockouts.*
