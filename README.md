@@ -1,4 +1,4 @@
-# 🛡️ App Locker
+# App Locker
 
 A lightweight application locker that prevents specific programs from running without a password. AppLocker registers itself as a high-privilege system task to ensure it stays active across reboots.
 
