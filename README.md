@@ -7,7 +7,7 @@ A lightweight application locker that prevents specific programs from running wi
 
 ---
 
-## How to Install
+### How to Install
 
 1. **Clone the Repository:** 
     Download the source code to your computer. GitHub may flag pre-built executables that edit system files, so building it yourself is the safest method.
@@ -26,7 +26,7 @@ A lightweight application locker that prevents specific programs from running wi
 
 ---
 
-## Tips
+### Tips
 
 - Once the deployment finishes successfully, I highly suggest deleting the source files from your desktop and recycling bin. Although the `settings.ini` file is reset after running, leaving these may hint to others that this app was run.
 - If you want to run the deployment again for the same output name, ensure the previous task is completely killed via task manager otherwise the code will fail to run properly.
@@ -34,7 +34,7 @@ A lightweight application locker that prevents specific programs from running wi
 
 ---
 
-## Troubleshooting
+### Troubleshooting
 Before sending any issue requests check the following:
 - **Dependencies:** Run  `pip install -r requirements` again to ensure the required libraries are installed.
 - **Admin rights:** The task registration will fail if you deny the Admin prompt during deployment. This does not stop the exe from being prodceed, but it will not run automatically on startup.
@@ -42,7 +42,7 @@ Before sending any issue requests check the following:
 
 ---
 
-## License
+### License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
