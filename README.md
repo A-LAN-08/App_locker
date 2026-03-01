@@ -21,6 +21,7 @@ A lightweight application locker that prevents specific programs from running wi
    - List the programs you want to block, leaving no white space e.g. firefox.exe,discord.exe.
    - Set your desired unlock password (defaults to password123 but CHANGE THIS).
    - (optional) change the output name of the exe to something inconspicuous. Defaults to WinSystemHost.
+   - (optional) change whether a program's authorised status is reset when it is fully closed.
 
 4. **Deploy:** Run `run.py` via your preferred method. It will prompt for admin access when creating a schedule which is needed for the program to automatically run on Windows startup.
 
