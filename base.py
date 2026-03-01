@@ -5,6 +5,7 @@ import ctypes
 
 TARGET_APPS = ["REPLACE_APPS"]
 PASSWORD = "REPLACE_PASSWORD"
+RESET_ON_EXIT = "REPLACE_RESET"
 
 CREDUI_MAX_PASSWORD_LENGTH = 256
 CREDUI_FLAGS_GENERIC_CREDENTIALS = 0x1
@@ -37,14 +38,21 @@ def monitor():
     while True:
         procs = [p for p in psutil.process_iter(['name']) if p.info['name'].lower() in TARGET_APPS]
         if not procs:
+            if RESET_ON_EXIT:
+                authorized = set()
             time.sleep(0.5)
             continue
+
+        for name in list(authorized):
+            if name not in [p.info['name'].lower() for p in procs] and RESET_ON_EXIT:
+                authorized.remove(name)
 
         unauthorized = set()
         clean_proc = []
         for p in procs:
             try:
-                if p.info["name"] in authorized:
+                if p.info["name"].lower() in authorized:
+                    p.resume()
                     continue
                 clean_proc.append(p)
                 p.suspend()
@@ -59,9 +67,7 @@ def monitor():
             if ask_password(app_name) == PASSWORD:
                 proc.resume()
                 authorized.add(app_name)
-                print(f"Access granted to {app_name}")
             else:
-                print("Access denied. Nuking tree...")
                 [p.kill() for p in clean_proc if p.info['name'].lower() == app_name]
                 unauthorized.add(app_name)
 

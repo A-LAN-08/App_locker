@@ -5,7 +5,7 @@ import os
 import subprocess
 
 def main(out_name, exe_path):
-    admin_check()
+    # admin_check()
 
     ps_script = f"""
     $action = New-ScheduledTaskAction -Execute '{exe_path}'
@@ -16,16 +16,23 @@ def main(out_name, exe_path):
     Register-ScheduledTask -TaskName "{out_name}" -Action $action -Trigger $trigger -Principal $principal -Settings $settings -Force
     """
 
-    result = subprocess.run(
-        ["powershell", "-NoProfile", "-Command", ps_script],
-        capture_output=True,
-        text=True
+    # result = subprocess.run(
+    #     ["powershell", "-NoProfile", "-Command", ps_script],
+    #     capture_output=True,
+    #     text=True
+    # )
+
+    single_line_ps = f"-NoProfile -WindowStyle Hidden -Command {ps_script}"
+
+    print("Requesting Admin for Task Scheduler...")
+    result = ctypes.windll.shell32.ShellExecuteW(
+        None, "runas", "powershell.exe", single_line_ps, None, 1
     )
 
-    if result.returncode == 0:
+    if result > 32:
         print("PowerShell: Task registered successfully.")
     else:
-        print(f"PowerShell Error: {result.stderr}")
+        print("PowerShell error.")
 
 
 def is_admin():
